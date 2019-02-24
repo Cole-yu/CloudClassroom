@@ -1,13 +1,26 @@
 <template>
-    <div id="main">
-        <div id="test">{{text}}</div>   
-        <!-- 使用{{}}双大括号进行变量数据绑定  -->
-        <Header></Header>
+    <div class="main">
+        <div class="left">
+            <Photo></Photo>
+            <Information></Information>
+            <Skill></Skill>
+        </div>
+        <div class="right">
+            <AboutMe></AboutMe>
+            <Experience></Experience>            
+            <Education></Education>
+        </div>        
     </div>    
 </template>
 
 <script>
-import Header from "./components/header.jsx";
+import Photo from "./components/photo.vue";
+import Information from "./components/information.vue";
+import Skill from "./components/skill.vue";
+import AboutMe from "./components/aboutMe.jsx";
+import Experience from "./components/experience.jsx";
+import Education from "./components/education.jsx";
+
 export default {
     data(){
         return {
@@ -15,14 +28,35 @@ export default {
         }
     },
     components:{
-        Header
+        Photo,
+        Information,
+        Skill,
+        AboutMe,
+        Experience,
+        Education             
     }
 }
 </script>
 
-<style lang="scss">
-    #test{
-        color:red;
+<style lang="scss" scoped>    
+    .main{
+        position: relative;     
+        width: 100%;        
+        overflow: hidden;
+    }
+    .left{
+        width: 300px;
+        height: 100%;
+        float: left;
+        background-color: #0e0e0e;
+        margin-bottom: -2000px;
+        padding-bottom: 2000px;
+    }    
+
+    .right{                
+        padding-left:300px;
+        height: 100%;
+        background-color: white;
     }
 </style>
 

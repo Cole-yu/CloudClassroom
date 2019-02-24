@@ -16,7 +16,10 @@ const config={
     output:{
         filename:"bundle.[hash:8].js",
         path:path.join(__dirname,"dist")
-    },    
+    },
+    resolve: {
+        extensions: [ '.tsx', '.ts', '.js' ]
+    },
     module:{
         rules:[
             {
@@ -26,6 +29,16 @@ const config={
             {
                 test:/\.jsx$/,
                 loader:"babel-loader"
+            },
+            {
+                test: /\.(ts|tsx)?$/,
+                use: {
+                    loader:'ts-loader',
+                    options:{
+                        appendTsSuffixTo: [/\.vue$/] 
+                    }
+                },
+                exclude: /node_modules/
             },
             // {
             //     test:/\.css/,
@@ -57,10 +70,11 @@ const config={
         }), 
         new VueLoaderPlugin(),
         new HTMLPlugin({
-                title: '个人简历',
-                minify:{                        //压缩HTML文件
-                    removeComments:true,        //移除HTML中的注释
-                    collapseWhitespace:true     //删除空白符与换行符
+                title: '个人简历',              // 不会替换指定模板文件中的title元素的内容
+                template:"./src/index.html",
+                minify:{                        // 压缩HTML文件
+                    removeComments:true,        // 移除HTML中的注释
+                    collapseWhitespace:true     // 删除空白符与换行符
                 }
             }       
         )

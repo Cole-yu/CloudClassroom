@@ -26,7 +26,7 @@ export default {
         color:#ff9f20;
     }
     .items{
-
+        position: relative;
     }
     .item-value{
         color:white;

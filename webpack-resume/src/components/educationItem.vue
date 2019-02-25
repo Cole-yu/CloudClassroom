@@ -1,9 +1,35 @@
-#experience{
-    position: relative;
-    background-color: #333;
-}
+<template>
+    <div class="item">
+        <div class="item-left">
+            <div class="work-events">
+                <div class="work-time">{{educationItem.educationDate}}</div>
+                <div class="work-project">{{educationItem.educationUniversity}}</div>
+            </div>
+        </div>
+        <div class="item-right">
+            <p class="content">{{educationItem.educationContent}}</p>                                              
+        </div>
+    </div>
+</template>
 
-.experience-item{
+<script>
+export default {
+    props:{
+        educationItem:{
+            type:Object,
+            required:true
+        }        
+    },
+    data(){
+        return {
+                        
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.item{
     position: relative;
     width: 100%;           
     
@@ -14,9 +40,7 @@
     // overflow: hidden;
 
     // 方法三 实现成功
-    overflow: hidden;
-    background-color: white;
-    opacity: 0.9;      
+    overflow: hidden;      
 }
 
 .item-left{
@@ -54,13 +78,6 @@
 
 .title-center{
     text-align: center;
-    color: #ff9f20;
-}
-
-#experience-title:hover{
-    cursor:wait;
-    animation:they-axis-rotate 2s 3;
-    -webkit-animation:they-axis-rotate 2s 3;
 }
 
 .content{
@@ -83,3 +100,5 @@
 .work-company{
     color: #333;
 }
+</style>
+

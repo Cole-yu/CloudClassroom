@@ -12,7 +12,7 @@ export default{
                 <div class="aboutMe-left">
                 </div>
                 <div class="aboutMe-right">                    
-                    <h1 class="title-center">关于我</h1>
+                    <h1 class="title-center" id="aboutMe-title">关于我</h1>
                     <p class="content">{this.content}</p>                                              
                 </div>
             </div>

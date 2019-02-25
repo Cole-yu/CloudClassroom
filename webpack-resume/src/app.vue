@@ -15,11 +15,11 @@
 
 <script>
 import Photo from "./components/photo.vue";
-import Information from "./components/information.vue";
+import Information from "./components/information/information.vue";
 import Skill from "./components/skill.vue";
 import AboutMe from "./components/aboutMe.jsx";
 import Experience from "./components/experience.jsx";
-import Education from "./components/education.jsx";
+import Education from "./components/education.vue";
 
 export default {
     data(){
@@ -57,6 +57,8 @@ export default {
         padding-left:300px;
         height: 100%;
         background-color: white;
+        margin-bottom: -2000px;
+        padding-bottom: 2000px;
     }
 </style>
 

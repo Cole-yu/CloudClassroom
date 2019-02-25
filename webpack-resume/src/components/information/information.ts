@@ -28,15 +28,18 @@ class GirlFriend implements Person{
 
 function haveGrilFriend():any{
     let newFriend=new GirlFriend("ye","lu");
-    console.log(newFriend);
+    console.log(newFriend);    
     return newFriend.getFullName();
 }
 
-export default{
-    data(){
-        return {
-            girlFriend:haveGrilFriend()
-        }
-    }    
-}
+// export default{
+//     data(){
+//         return {
+//             university:"上海立信会计金融学院"
+//         }
+//     },
+//     components:{
+
+//     }
+// }
 

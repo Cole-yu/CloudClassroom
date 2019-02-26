@@ -31,5 +31,6 @@ export default {
     }
     .item-value{
         color:white;
+        padding-left:10px;
     }
 </style>

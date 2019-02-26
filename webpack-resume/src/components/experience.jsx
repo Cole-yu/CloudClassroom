@@ -11,7 +11,7 @@ export default{
                     projectContent:"该企业ERP项目的主要功能模块分为流程管理，审批管理，知识中心，管理中心，个人中心等内容；与3名同事共同努力下完成了知识中心的的知识收藏，上传，我的分享，分享给我，回收站，荣誉墙，知识管理，权限查看及高级搜索等功能。"
                 },
                 {
-                    projectDate:"2017/03-2017/04",
+                    projectDate:"2017/03 - 2017/04",
                     projectName:"黄山旅游管理云平台",
                     projectContent:"该企业ERP项目的主要功能模块分为流程管理，审批管理，知识中心，管理中心，个人中心等内容；与3名同事共同努力下完成了知识中心的的知识收藏，上传，我的分享，分享给我，回收站，荣誉墙，知识管理，权限查看及高级搜索等功能。/S模式实现的网站项目，前端负责收集用户提交的数据，在后端处理业务逻辑，实现数据的查询，新增，修改，删除，并将结果返回给前端。"
                 },
@@ -30,7 +30,7 @@ export default{
                     <div class="item-left">
                     </div>
                     <div class="item-right">                    
-                        <h2 class="title-center" id="experience-title">项目经验</h2>
+                        <h1 class="title-center" id="experience-title">项目经验</h1>
                     </div>
                 </div>
 

@@ -32,14 +32,17 @@ function haveGrilFriend():any{
     return newFriend.getFullName();
 }
 
-// export default{
-//     data(){
-//         return {
-//             university:"上海立信会计金融学院"
-//         }
-//     },
-//     components:{
-
-//     }
-// }
-
+export default{
+    // props:{
+    //     skillName:{
+    //         type:String,
+    //         required:true
+    //     }
+    // },
+    props:["skillName"],
+    data(){
+        return {
+            skill:"Webpack"
+        }
+    }
+}

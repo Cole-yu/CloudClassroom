@@ -64,8 +64,11 @@ export default {
     .chunk{
         padding-left: 30px;
         text-align: left;
+        padding-top:15px;
     }
     .title{
         color:#ff9f20;
+        font-size: 16px;
+        padding:5px;
     }    
 </style>

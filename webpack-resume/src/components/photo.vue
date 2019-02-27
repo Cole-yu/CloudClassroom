@@ -21,7 +21,7 @@ export default {
     #photo{
         width: 100%;             
         padding:20px;
-        box-sizing: border-box;
+        box-sizing: border-box;        
     }
 
     #header-photo{
@@ -35,6 +35,8 @@ export default {
     #chinese-name{
         color:#ff9f20;
         text-align: center;
+        padding:5px;
+        font-size: 16px;
     }
 
     #profession{

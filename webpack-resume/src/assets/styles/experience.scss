@@ -1,6 +1,6 @@
 #experience{
     position: relative;
-    background-color: #333;
+    background-color: #333;    
 }
 
 .experience-item{
@@ -36,7 +36,7 @@
 }
 
 .item-right{    
-    padding: 0 30px;
+    padding: 0 30px 15px 30px;
     box-sizing: border-box;
     
     // 方法一
@@ -55,6 +55,9 @@
 .title-center{
     text-align: center;
     color: #ff9f20;
+    font-size: 24px;
+    padding:10px;
+    font-weight: 500;
 }
 
 #experience-title:hover{

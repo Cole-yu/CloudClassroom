@@ -24,10 +24,12 @@ export default {
 <style lang="scss" scoped>
     .insformations-item{
         padding-left:30px;
-        text-align: left;
+        text-align: left;        
     }
     .item-title{
         color:#ff9f20;
+        font-size: 16px;
+        padding:5px;
     }
     .item-value{
         color:white;

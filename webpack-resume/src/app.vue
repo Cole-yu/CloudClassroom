@@ -22,6 +22,8 @@ import AboutMe from "./components/aboutMe.jsx";
 import ThindLink from "./components/thirdLink.vue";
 import Experience from "./components/experience.jsx";
 import Education from "./components/education.vue";
+import Browser from "./components/browser/browser.js";
+
 
 export default {
     data(){
@@ -37,6 +39,15 @@ export default {
         ThindLink,
         Experience,
         Education                   
+    },
+    beforeCreate(){
+        Browser.isMobile(); // 出现白屏 加  fouc现象（flash of unstyled content） 重定向（浏览器发出了两次请求）（不是转发，转发浏览器只发送一次）
+    },
+    created(){
+
+    },
+    beforeMount(){
+        
     }
 }
 </script>

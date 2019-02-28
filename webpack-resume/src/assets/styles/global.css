@@ -30,14 +30,14 @@ a{
   text-decoration:none;
 } 
 a:link{
-  color:#009;
+  color:#009;  
 } 
 a:visited{
-  color:#800080;
+  color:#800080;  
 } 
 a:hover,a:active,a:focus{
   color:#c00;
-  text-decoration:underline;
+  text-decoration:none!important;
 }
 
 /*绕y轴旋转3D旋转*/

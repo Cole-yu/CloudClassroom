@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Main from "./main.vue";
+import "./assets/styles/bootstrap/bootstrap.min.css";
 import './assets/styles/global.css';
 
 console.log('NODE_ENV: ', process.env.NODE_ENV);

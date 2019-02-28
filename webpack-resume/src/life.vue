@@ -1,6 +1,6 @@
 <template>
     <div id="life">
-        <ul class="nav">		
+        <ul class="navi">		
             <li @click="showChange">Resume</li>
             <li @click="showChange">Nav</li>
             <li @click="showChange">Life</li>
@@ -126,7 +126,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 a{
 	color:#66ffff;
 	text-decoration:none;
@@ -156,13 +155,13 @@ a:hover{
 }
 
 
-ul.nav{
+ul.navi{
 	position: fixed;
 	top: 0;
 	left:0;
 }
 
-.nav li{	
+.navi li{	
 	width: 130px;
 	height: 130px;
 	border-radius:50%;
@@ -177,20 +176,20 @@ ul.nav{
 	margin-top: 30px;	
 }
 
-.nav li:hover{
+.navi li:hover{
 	color:#ff9900;
 }
 
-.nav li:nth-child(0){
+.navi li:nth-child(0){
 	background-color: rgba(34, 34, 34, 0.89);	
 }
-.nav li:nth-child(1){
+.navi li:nth-child(1){
 	background-color: rgba(102, 255, 255, 0.79);
 }
-.nav li:nth-child(2){
+.navi li:nth-child(2){
 	background-color: rgba(102, 204, 102, 0.8);
 }
-.nav li:nth-child(3){
+.navi li:nth-child(3){
 	background-color: rgba(204, 204, 255, 0.87);
 }
 
@@ -297,6 +296,17 @@ ul.nav{
 	display: block;
 	clear: both;
 	visibility: hidden;
+}
+
+@media screen and (max-width: 415px) {
+    ul.navi{
+        display: none;
+    }
+
+    #steps{
+        margin-left: 45px;
+    }
+
 }
 </style>
 

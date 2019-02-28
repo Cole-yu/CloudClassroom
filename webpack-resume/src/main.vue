@@ -12,7 +12,7 @@ import Nav from "./nav.vue"
 export default {    
     data(){
         return {
-            currentTabComponent:"Life"
+            currentTabComponent:"Nav"
         }
     },
     components:{

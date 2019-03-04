@@ -1,7 +1,7 @@
 {
-  "name": "webpack-resume",
+  "name": "resume",
   "version": "1.0.0",
-  "description": "use webpack create resume",
+  "description": "bootstrap resume",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,11 @@
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.conf.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.conf.js"
   },
-  "author": "",
+  "keywords": [
+    "bootstrap",
+    "resume"
+  ],
+  "author": "1032577646@qq.com",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^9.4.8",
@@ -18,6 +22,7 @@
     "babel-loader": "^7.1.5",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^1.0.1",
     "cross-env": "^5.2.0",
@@ -36,11 +41,9 @@
     "url-loader": "^1.1.2",
     "vue": "^2.6.7",
     "vue-loader": "^15.6.4",
-    "vue-router": "^3.0.2",
     "vue-template-compiler": "^2.6.7",
-    "vuex": "^3.1.0",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.0"
+    "webpack-dev-server": "^3.2.1"
   }
 }

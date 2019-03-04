@@ -14,15 +14,9 @@ const config={
     target:"web",       // 为浏览器环境，不是服务器环境
     entry:path.join(__dirname,"src/index.js"),
     output:{
-        filename:"bundle.[hash:8].js",
+        filename:"bundle.js",
         path:path.join(__dirname,"dist")
-    },
-    resolve: {
-        extensions: [ '.tsx', '.ts', '.js' ],
-        alias: {
-            'vue$': 'vue/dist/vue.esm.js'           //内部为正则表达式 vue结尾的
-        }
-    },
+    },   
     module:{
         rules:[
             {
@@ -32,36 +26,27 @@ const config={
             {
                 test:/\.jsx$/,
                 loader:"babel-loader"
-            },
-            {
-                test: /\.(ts|tsx)?$/,
-                use: {
-                    loader:'ts-loader',
-                    options:{
-                        appendTsSuffixTo: [/\.vue$/] 
-                    }
-                },
-                exclude: /node_modules/
-            },
+            },            
             // {
             //     test:/\.css/,
             //     use:[
             //         "style-loader",
             //         "css-loader"
             //     ]
-            // },            
+            // },
             {
-                test:/\.(gif|jpg|jpeg|png|svg)$/,
+                test:/\.(gif|jpg|jpeg|png|svg|ttf|eot|woff|woff2)$/,        // 处理 font-awesome 的字体文件
                 use:[
                     {
                         loader:"url-loader",
                         options:{
                             limit:1024,
-                            name:"[name].[hash:8].[ext]"
+                            name:"[name].[ext]",
+                            outputPath:"assets/"
                         }
                     }
                 ]
-            }
+            }            
         ]
     },    
     plugins:[
@@ -73,7 +58,8 @@ const config={
         }), 
         new VueLoaderPlugin(),
         new HTMLPlugin({
-                title: '个人简历',              // 不会替换指定模板文件中的title元素的内容
+                title: '个人简历',               // 不会替换指定模板文件中的title元素的内容
+                favicon: './src/assets/images/title.png',       // 设置网页标题的favicon.icon路径
                 template:"./src/index.html",
                 minify:{                        // 压缩HTML文件
                     removeComments:true,        // 移除HTML中的注释
@@ -135,7 +121,10 @@ else{                           // 生产环境，webpack自动会压缩js文件
 
     config.output.filename='[name].[chunkHash:8].js';           // 因为vendor一般是不变的，所以不能用hash,用chunkhash(基于模块来计算)
 
-    config.module.rules.push(
+    // 注意 以后需要注意rules中添加了规则，导致顺序不对的问题
+    config.module.rules[2].use[0].options.name = "[name].[hash:8].[ext]";   // 生产环境添加 hash 值
+
+    config.module.rules.push(        
         {
             test:/\.(c|sc|sa)ss$/,
             use:[

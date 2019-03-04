@@ -4,7 +4,8 @@
             <li @click="showChange">Resume</li>
             <li @click="showChange">Nav</li>
             <li @click="showChange">Life</li>
-            <li @click="showChange">archive</li>
+            <li @click="toChange">archive</li>
+            <li @click="toDrinkWater">Sleep</li>
         </ul>
 
         <div id="steps">
@@ -16,7 +17,7 @@
             </div>
             <a href="javascript:void(0);">
                 <div class="content">
-                    一个常见需求的nginx配置踩雷
+                    {{note}}
                 </div>	
             </a>		
             <div class="step-month">
@@ -86,16 +87,42 @@
 </template>
 
 <script>
-export default {
+export default {    
     data(){
         return {
-            
+           
+        }
+    },
+    computed:{        
+        note(){
+            // this.$store.state 获取值
+            // this.$store.getters 通过get方法获取值
+            console.log(this.$store.state.b.note);          // 获取 moduleB 的状态
+            console.log(this.$store.getters.getNotes);      // 获取 moduleB 的 getter 中的方法，不需要添加 模块信息，但是方法不能一样
+            return this.$store.state.a.note;                // 获取 moduleA 的状态
         }
     },
     methods:{
-        showChange($event){
-            var data="";
+        toChange(){
+            this.$store.dispatch('changeGirlFriend');
+        },
+        async toDrinkWater(){
+            // 使用 mutation ，必须是同步函数
+            // this.$store.commit("toSleep",{
+            //     time:1000
+            // });
 
+            // 使用 action 的分发，可以是异步函数
+            // this.$store.dispatch("eatLunch" , {
+            //     time:1000
+            // });
+
+            // 异步函数，会先执行 actions 中 run 返回的结果，在处理 run 方法中的dispatch
+            // this.$store.dispatch("run").then( val => console.log(val) );   
+            
+            await this.$store.dispatch("drinkWater").then( val => console.log(val) );            
+        },
+        showChange($event){
             switch($event.target.innerText){
                 case "Resume":{
                     this.$emit('showChange',"App");

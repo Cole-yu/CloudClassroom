@@ -10,9 +10,22 @@
             </div>
             <div class="month-value">
                 <a href="javascript:void(0);" class="month-summary">
-                    <div class="content">
-                        <i class="fa fa-paper-plane" aria-hidden="true"></i>                        
-                        <span>本人拥有二年的企业开发项目经验,对SPA开发方式及Restful设计模式有独立的见解。熟练运用HTML5/CSS3/Javascript/jQuery,尤其在JS方面,有自己深刻的认识。掌握Ajax与服务器端的数据交互,了解计算机网络相关知识(HTTP、TCP、UDP等网络通讯),熟悉angular、Bootstrap、easyUI等前端框架,能独立处理常见浏览器及移动设备的兼容性相关问题,也研究过Node.js等后端相关内容;熟悉W3C和ES6标准,学习过函数式及响应式编程思想。对工作认真负责,肯钻研,有良好的沟通和团队协作能力。</span>
+                    <div class="content">                        
+                        <ol>
+                            <li>全日制本科毕业，计算机科学与技术专业</li>
+                            <li>3年web开发经验，熟悉HTML5+CSS3+JS编程，熟悉标签语义化，网页性能优化，SEO优化等</li>
+                            <li>熟悉常用JS库，如JQuery、Zepto；熟悉常用UI类库，如Bootstrap、Amaze UI</li>
+                            <li>熟悉前后端分离，有移动端H5实际开发经验</li>
+                            <li>熟悉AngularJS、Vue、Angular2，了解React等前端开发框架</li>
+                            <li>有Vue + Vue-Router + Axios + Webpack + Vuex 技术栈开发经验</li>
+                            <li>有Angular2 + Typescript + RxJS + Bootstrap + NodeJs 技术栈开发经验</li>
+                            <li>有AngularJS + SeaJS + Jquery + Echarts + Javaweb 技术栈开发经验</li>
+                            <li>熟悉Webpack，实践过grunt，gulp等任务执行器的配置和插件开发</li>
+                            <li>熟悉WebApp实践,包括原生与js交互，SPA单页面Vue/Angular应用</li>
+                            <li>了解后台开发nodejs</li>
+                            <li>喜欢钻研各种新技术，乐于交流，有强烈的产品荣誉感及归属感，有清晰的职业规划</li>
+                            <li>有较强的学习能力，拥有自己的 Github 账号</li>
+                        </ol>                                             
                         <div class="content-date">2019 - 03 - 04</div>                        
                     </div>	
                 </a>                                           
@@ -76,7 +89,17 @@
             </a>
             <div class="step-year">
                 <h1 class="item-year">项目经验</h1>
-            </div>		
+            </div>
+            <div class="step-month">
+                <h1 class="item-month">MAA大数据运营平台</h1>
+            </div>
+            <a href="javascript:void(0);">
+                <div class="content">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>                        
+                    <span>MAA是一个大数据运营平台，致力于数据体验，趋势分析。该平台包含用户行为分析，用户参与度调查，功能使用查询，打点需求管理，子管理员配置，体验数据，UX设计评估，特性运营，事件点看板，应用使用统计等内容。该平台提供了精确的数据源和直观的统计图表，为华为公司管理层和数据运营人员做出准确的决策而保驾护航。</span>
+                    <div class="content-date">2018/06 - 2019/03</div>                        
+                </div>
+            </a>	
             <div class="step-month">
                 <h1 class="item-month">重庆医药信息云门户</h1>
             </div>
@@ -295,6 +318,14 @@ export default {
         font-size: 14px;
     }
     .content span{
+        word-break: break-all;
+    }
+    .content ol{
+        margin-left: 20px;
+    }
+
+    ol li{
+        padding: 5px;
         word-break: break-all;
     }
 

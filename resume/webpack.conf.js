@@ -8,6 +8,8 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");                // 分离css文件，不会压缩
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");  // 压缩css文件
 
+const UglifyJsPlugin =require("uglifyjs-webpack-plugin");   // 压缩js成功:要对中间状态生成的js进行语法转化 
+
 const isDev = process.env.NODE_ENV === "development";   // 环境判断
 
 const config={
@@ -18,7 +20,7 @@ const config={
         path:path.join(__dirname,"dist")
     },   
     module:{
-        rules:[
+        rules:[                     
             {
                 test:/\.vue$/,
                 loader:"vue-loader"
@@ -26,7 +28,7 @@ const config={
             {
                 test:/\.jsx$/,
                 loader:"babel-loader"
-            },            
+            },                       
             // {
             //     test:/\.css/,
             //     use:[
@@ -46,9 +48,14 @@ const config={
                         }
                     }
                 ]
-            }            
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules)/,      // 排除文件
+                loader: 'babel-loader'
+            }              
         ]
-    },    
+    },   
     plugins:[
         new CleanWebpackPlugin(['dist']),
         new webpack.DefinePlugin({
@@ -143,7 +150,8 @@ else{                           // 生产环境，webpack自动会压缩js文件
 
     config.optimization={
         minimizer: [            
-            new OptimizeCSSAssetsPlugin({})
+            new OptimizeCSSAssetsPlugin({}),
+            new UglifyJsPlugin()     
         ],
         splitChunks:{
             cacheGroups:{
@@ -162,7 +170,7 @@ else{                           // 生产环境，webpack自动会压缩js文件
         new MiniCssExtractPlugin({
             filename: "styles.[hash:8].css",   // 用hash,基本compilation在项目编译时改变，一个版本一个hash
             chunkFilename: "[id].css"
-        })
+        })        
     );
 }
 

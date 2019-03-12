@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>bind实现原理</title>
+	<meta charset="utf-8">
+	<meta name="description" content="bind实现原理" >
+</head>
+<body>
+	<script type="text/javascript">
+
+		//三个特性：	1. 保存 this 返回一个函数
+		//			2. 可以传入参数
+		//			3. 一个绑定函数也能使用new操作符创建对象：这种行为就像把原函数当作构造器。提供的this值被忽略，同时调用的参数被提供给模拟函数
+		// 使用场景:  改变this的指向
+		//	 		 不需要立即执行
+		// 			 （学习 React 框架中会频繁使用）
+
+		//  --------------------- 华丽的分割线 ---------------------------
+
+		// bind 特性2：可以传入参数
+		// var foo={
+		// 	value:1
+		// }
+
+		// function bar(name,sex){
+		// 	this.age = 38;
+		// 	console.log(name);
+		// 	console.log(sex);
+		// 	console.log(this.value);
+		// }
+
+		// // 原生的 bind 方法调用
+		// var bindFoo = bar.bind(foo,"叶露");
+		// bindFoo("女");
+
+		// // 自己实现 bind 原理
+		// Function.prototype.bind2 = function(context){
+		// 	var self = this;
+		// 	// console.log(this);
+		// 	var args = Array.prototype.slice.call(arguments,1);
+		// 	// console.log(args);
+
+		// 	return function(){
+		// 		console.log(this);
+		// 		var bindArgs=Array.prototype.slice.call(arguments);
+		// 		// console.log(bindArgs);
+		// 		self.apply(context,args.concat(bindArgs));
+		// 	}			
+		// }
+
+		// var bindFoo2 = bar.bind2(foo,"吴彦祖");
+		// bindFoo2("男");
+
+		//  --------------------- 华丽的分割线 ---------------------------
+
+		// bind 特性3：一个绑定函数也能使用new操作符创建对象：这种行为就像把原函数当作构造器。提供的this值被忽略，同时调用的参数被提供给模拟函数
+		var foo={
+			value:1
+		}
+
+		function bar(name,sex){
+			this.age = 38;
+			console.log(name);
+			console.log(sex);
+			console.log(this.value); 		// undefined this指向了新的实例obj,而obj没有value属性
+		}
+
+		var bindFoo = bar.bind(foo,"叶露");
+		var obj = new bindFoo("女");
+		console.log(obj.age);
+
+		
+		Function.prototype.bind2 = function(context){
+			var self = this;
+			// console.log(this);
+			var args = Array.prototype.slice.call(arguments,1);
+			// console.log(args);				// 吴彦祖
+
+			var fResult = function(){
+				console.log(this);
+
+				var bindArgs = Array.prototype.slice.call(arguments);
+				// console.log(bindArgs);		// 男
+
+				// context => this 指向 foo 对象，需要把 this 指向 bar 对象，才能获取 obj2.age 属性
+				// self.apply(this, args.concat(bindArgs));
+
+				// 设置 绑定对象 和 传入的参数：["吴彦祖", "男"]
+				self.apply(this instanceof self ? this : context, args.concat(bindArgs));
+			}
+
+			fResult.prototype = self.prototype;		// 原型 bar 附加给 fResult 方法，使 fResult 原型拥有 age 属性,可以获取 obj2.age
+
+			return fResult;
+		}
+
+		var bindFoo2 = bar.bind2(foo,"吴彦祖"); 		// bind2 方法返回一个 fResult 方法，因此
+
+		// 一个绑定函数也能使用new操作符创建对象：这种行为就像把原函数当作构造器。提供的this值被忽略，同时调用的参数被提供给模拟函数
+		var obj2 = new bindFoo2("男");
+		console.log(obj2.age);
+
+	</script>
+</body>
+</html>
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>fetch</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="fetch.js"></script>
+</head>
+<body>
+	<button id="btn1">读取本地文件</button>
+	<button id="btn2">读取本地JSON文件</button>
+	<button id="btn3">网络请求数据</button>
+
+	<div id="app"></div>
+
+	<script type="text/javascript">
+		var btn1=document.getElementById("btn1");
+		var btn2=document.getElementById("btn2");
+		var btn3=document.getElementById("btn3");
+
+		btn1.addEventListener("click",function(e){
+			FetchGet("test.txt",{
+				param:{
+					name:"yfx"
+				}
+			},function(res){
+				console.log("读取本地文件"+res);
+			});
+		});
+
+		btn2.addEventListener("click",function(e){
+			FetchGet("test.txt","",function(res){
+				console.log("读取本地JSON文件"+res);
+			});
+		});
+
+		btn3.addEventListener("click",function(e){
+			FetchGet("test.txt","",function(res){
+				console.log("获取网络请求数据"+res);
+			});
+		});
+	</script>
+	
+</body>
+</html>

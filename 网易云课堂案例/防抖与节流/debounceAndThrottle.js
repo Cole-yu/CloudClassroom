@@ -21,13 +21,12 @@ var container = document.getElementById("container");
 
 function getUserAction(){
 	console.log(this);
-	container.inderHTML = count++;
+	container.innerHTML = count++;
 }
 
-container.onmousemove = debounce(getUserAction, 1000, flag);
-
+// container.onmousemove = debounce(getUserAction, 1000, true);
 // 防抖
-function debounce(func, wait){
+function debounce(func, wait, flag){
 	var timeout;
 	return function(){
 		var self = this;
@@ -57,7 +56,7 @@ function debounce(func, wait){
 };
 
 
-container.onmousemove = throttle(getUserAction, 1000, flag);
+container.onmousemove = throttle(getUserAction, 1000);
 // 节流
 function throttle(func, wait){
 	var prexious = 0;				// 用作标记 ==> 相对论

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>开发高性能模板引擎</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="开发高性能模板引擎">	
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript" src="template.js"></script>
+	<script type="text/template" id="tpl">
+		<ul class="list"> 
+			<% obj.forEach(function(e, i, a){ %>
+				<% if(i === a.length - 1) %>
+					<li class="last-item"><%= e.name %></li>
+				<% else %>
+					<li><%= e.name %></li>
+			<% >}) %>	
+		</ul>
+	</script>
+	<script type="text/javascript">
+
+		// todo 没做字符串的逃逸，导致控制台 渲染函数生成时 会报错
+		// 模拟数据
+		// var data=[{
+		// 		name:"apple"
+		// 	},{
+		// 		name:"orange"
+		// 	},{
+		// 		name:"peach"
+		// 	}];
+
+		// 提前作用域的绑定		
+		var scopeObj = "obj";
+
+		// 开发版 
+		// <%= 变量 %>  <%- 其他 %>   <% 逻辑 %> 正则表达式的匹配 with 提前作用域绑定，提升性能
+		var compiled = template("hello:<%= name %>",{
+				variable : scopeObj	// 数据对象
+			});
+		console.log(compiled({name:"max"}));
+		console.log(compiled({name:"yfx"}));
+
+		// var compiled = template(document.getElementById("tpl").innerHTML);
+		// var str = compiled(data);
+		// document.getElementById("box").innerHTML = str;
+
+
+		// 字符串 模板 规则{{逻辑}} <%变量%>  规则 + 渲染器
+		// var template = "hello {{name}}";
+		// var data = {name:"max"};
+		// render(template, data);
+			
+		// <%= 变量 %>  <%- 其他 %>   <% 逻辑 %> 正则表达式的匹配
+		
+		// template("hello:<%= name %>");
+		// template("hello:<%= name %>hello:<%= name %>");
+		// template("hello: alert(1)");
+
+		// <%=name%>		/<%([\s\S]+?)%>/g   js逻辑
+	</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>前端报表</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="前端报表">
+	<script type="text/javascript"></script>
+	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+	<script type="text/javascript" src="http://mockjs.com/dist/mock.js"></script>
+</head>
+<body>
+	<div style="padding:20px;text-align: center;">
+		<input type="text" class="form-control" id="userId" placeholder="玩家ID搜索">
+		<button class="btn btn-danger" click="downPage" id="search">搜索</button>
+	</div>
+	<div >
+		<button class="ben btn-primary" id="downPage">下载当前数据</button>
+		<button class="ben btn-success" id="downAll">下载所有数据</button>
+	</div>
+		
+
+		<table class="table table-hover">
+			<table class="table table-bordered" id="table">
+				<thead>
+					<tr>
+						<th>订单编号</th>
+						<th>邀请的玩家ID</th>
+						<th>玩家充值金额</th>
+						<th>充值时间</th>
+						<th>获得返利</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					<tr>
+						<td>1</td>
+						<td>1001</td>
+						<td>1000</td>
+						<td>2019-03-28</td>
+						<td>100</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1001</td>
+						<td>1000</td>
+						<td>2019-03-28</td>
+						<td>100</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1001</td>
+						<td>1000</td>
+						<td>2019-03-28</td>
+						<td>100</td>
+					</tr>
+				</tbody>
+			</table>
+		</table>
+</body>
+
+<script type="text/javascript" src="toExcel.js"></script>
+<script type="text/javascript">
+	// var data = Mock.mock({
+	//     // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+	//     'list|1-10': [{
+	//         // 属性 id 是一个自增数，起始值为 1，每次增 1
+	//         'id|+1': 1
+	//     }]
+	// })
+
+	var data = Mock.mock({	   
+	    'list|20': [{	        
+	        'orderId|+1': 1,
+	        'userId|100-110':1,	// 1 代表数据类型int
+	        'charge|100-1000':1,
+	        'datetime|1533397502024-1553397502024':1, // 时间戳 +new Date(),
+	        'commission|1-20.1-2':1.1				//."数后面保"
+	    }]
+	})
+	// 输出结果
+	// null可以是函数或数组，函数表示添加特殊转化，数组是只转化数组中添加的属性名，null或不提供表示所有属性都被序列化， 4是格式样式缩进
+	// console.log(JSON.stringify(data, null, 4));	
+
+	document.querySelector("#search").addEventListener("click",function(){
+		var userId = document.querySelector("#userId").value;
+		var list = data.list.filter(function(value){
+			return value.userId == userId;
+		});
+		render({list:list});
+	});
+
+	render(data);
+	function render(data){
+		var arr = [];
+		data.list.forEach(function(value){
+			arr.push(
+					"<tr>"+
+						"<td>" + value.orderId + "</td>"+
+						"<td>" + value.userId + "</td>"+
+						"<td>" + value.charge + "</td>"+
+						"<td>" + changeDate(value.datetime) + "</td>"+
+						"<td>" + value.commission + "</td>"+
+					"</tr>"
+				)
+		})
+
+		document.querySelector("#tbody").innerHTML = arr.join('');
+	}	
+
+	function changeDate(timestamp){
+		var date = new Date(timestamp);
+		var year = date.getFullYear();
+		var month = date.getMonth() + 1;
+		var day = date.getDate();
+		return year + "-" + month + "-" + day;
+	}
+
+	// 下载当前
+	document.querySelector("#downPage").addEventListener("click",function(){
+		Export.toExcel("#table");
+	});
+
+	// 下载所有数据
+	document.querySelector("#downAll").addEventListener("click",function(){
+		data.list.unshift({
+			orderId:"订单编号",		
+			userId:"邀请的玩家ID",
+			charge:"玩家充值金额",
+			datetime:"充值时间",
+			commission:"获得返利"
+		});
+		Export.toExcel(data.list);
+	});
+
+</script>
+
+</html>

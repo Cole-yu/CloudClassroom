@@ -16,11 +16,28 @@ html,body{
 .module-panel{
 	position: relative;
 }
-.module-panel>i{
-
+.module-panel > i{
+	display: block;
+	position: relative;
+	top: 0;
+	left: -40px;
+	width: 32px;
+	height: 61px;
+	/*background: linear-gradient(left, red, blue);*/
+	background: blue;
+	cursor:pointer;
 }
 .module-panel > div.module{
-
+	text-align: center;
+	color: #fff;
+	font-size: 40px;
+	font-weight: bold;
+	/*border: 1px solid #ddd;*/
+	position: absolute;
+}
+.module-panel > div.module.drag{
+	border: 2px #0066b3 dashed;
+	z-index: 999;
 }
 .module-panel > div > div.mask{
 	background-color: #fff;

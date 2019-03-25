@@ -57,6 +57,9 @@
 
 		var source = "_p+='";	//执行头
 		var index = 0;
+
+		// 参数matchStr是每次正则匹配到的字符串，这是固定的
+		// 参数 offset 是匹配项在字符串中的开始下标
 		text.replace(matcher, function(matcher, escape, interpolate, evalute, offset){
 			console.log(interpolate);
 			source += text.slice(index, offset);

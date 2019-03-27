@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>classList实现原理</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="classList实现原理">
+</head>
+<body>
+	[].push.call(arguments)
+	<div id="div" class="classA classB"></div>
+
+	<script type="text/javascript">
+		function DOMTokenList(el){
+			Object.defineProperty(this, "value", {
+				enumerable : false,
+				set : function(nv){
+					el.className = nv;
+				}
+			})
+		}
+
+		DOMTokenList.prototype = {
+			constructor : DOMTokenList,		// 将原型与构造函数进行绑定
+			add : function(clazz){
+				[].push.call(this, clazz);
+				this.value = [].join.call(this, "");
+			},
+			contains : function(clazz){
+				return [].includes.call(this, clazz);
+			},
+			remove : function(clazz){
+				console.time("remove");
+				for(var i = 0; i<this.length; i++){
+					if(clazz == this[i]){
+						[].splice.call(this, i, 1);
+						debugger
+						this.value = [].join.call(this, " ");
+						return clazz;
+					}
+				}
+				console.timeEnd("remove");
+			},
+			toggle : function(){
+
+			}
+		}
+
+		Object.defineProperty(HTMLElement.prototype, "classList", {
+			get : function(){
+				if(!this.__dt1__){
+					this.__dt1__ = this.className.split(" ");
+					this.__dt1__.__proto__ = new DOMTokenList(this);
+				}
+				return this.__dt1__;
+			}
+		});
+
+		div.classList.add("a");
+		div.classList.add("b");
+		div.classList.add("c");
+		console.log(div.classList.contains("classA"));
+		div.classList.remove("b");
+		console.log(div.classList);
+	</script>
+</body>
+</html>
+
+// Array.prototype.push.call()
+// [].push.call(this)

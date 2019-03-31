@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>单例模式</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="单例模式">
+</head>
+<body>
+	<script type="text/javascript">
+		// (function(){
+		// 	var name = "";
+
+		// 	Person = function(value){
+		// 		name = value;
+		// 	}
+
+		// 	Person.prototype.getName = function (){
+		// 		return name;
+		// 	}
+
+		// 	Person.prototype.setName = function (value){
+		// 		name = value;
+		// 	}			
+		// })();
+		
+		// var a = new Person("a");
+		// console.log(a.getName());
+		// var b = new Person("b");
+		// console.log(b.getName());
+		// console.log(a.getName());
+
+		// --------------------------------------------------
+		// 对象字面量
+		// var singleton = {
+		// 	attr : 1,
+		// 	method : function(){
+		// 		reutrn this.attr
+		// 	}
+		// }
+		// --------------------------------------------------
+		function BaseComponent(){
+			this.el = "#app";
+		}
+
+		var application = (function(){			
+			var components = new Array();
+			
+			components.push(new BaseComponent());
+			[].push.call(components, new BaseComponent());
+			Array.prototype.push.call(components, new BaseComponent());
+
+			var app = new BaseComponent();
+
+			app.getComponentCount = function(){
+				return components.length;
+			}
+
+			app.registerComponent = function(component){
+				if(typeof component == "object"){
+					components.push(component);
+				}
+				
+			}
+			
+			return app;
+		})();
+
+		console.log(application.getComponentCount());
+		application.registerComponent(new BaseComponent());
+		console.log(application.getComponentCount());
+
+	</script>
+</body>
+</html>

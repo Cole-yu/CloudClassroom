@@ -18,4 +18,10 @@ https://study.163.com/course/courseLearn.htm?courseId=1209251805#/learn/live?les
 
 2019/04/22 ~ 2019/04/28
 https://study.163.com/course/courseLearn.htm?courseId=1209299818#/learn/live?lessonId=1278975605&courseId=1209299818
+
+2019/05/07 ~ 2019/05/12
+https://study.163.com/course/courseLearn.htm?courseId=1209332814#/learn/live?lessonId=1279045692&courseId=1209332814
+
+2019/05/13 ~ 2019/05/31
+https://study.163.com/course/courseLearn.htm?courseId=1209338868#/learn/live?lessonId=1279073401&courseId=1209338868
 ```
